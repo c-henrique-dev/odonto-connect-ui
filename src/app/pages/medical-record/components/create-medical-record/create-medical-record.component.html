@@ -1,0 +1,35 @@
+<div class="flex justify-center bg-white h-screen">
+    <form class="w-full max-w-4xl mt-5 px-8 pt-6 pb-8 mb-4" [formGroup]="formMedicalRecord">
+        <h2 class="text-2xl mb-5">Cadastro do prontuário</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <input app-input-material required formControlName="record_date" type="datetime-local" />
+                <mat-datepicker></mat-datepicker>
+            </div>
+            <div>
+                <mat-form-field class="w-full">
+                    <mat-label>Paciente</mat-label>
+                    <mat-select formControlName="patient_id">
+                        @for (patient of patients; track $index) {
+                        <mat-option value="{{ patient.id }}">{{ patient.name }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-span-2">
+                <input app-input-material type="file" formControlName="attachment" (change)="onFileSelected($event)">
+            </div>
+            <div class="col-span-2">
+                <mat-form-field class="w-full">
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput placeholder="Insira uma descrição" formControlName="description"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <button app-material-button class="w-[45%] text-lg" type="button" (click)="saveMedicalRecord()">
+                Cadastrar
+            </button>
+        </div>
+    </form>
+</div>

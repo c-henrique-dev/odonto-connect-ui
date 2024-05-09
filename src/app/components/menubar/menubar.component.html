@@ -1,0 +1,57 @@
+@if (estaLogado) {
+<app-header></app-header>
+}
+<mat-drawer-container autosize>
+  @if (estaLogado) {
+  <mat-drawer #drawer opened="true" mode="side" position="start">
+    <mat-nav-list>
+      <mat-accordion>
+        <mat-expansion-panel style="box-shadow: none">
+          <mat-expansion-panel-header style="margin-left: -8px">
+            <mat-panel-title class="text-[16px]">Paciente</mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="patient/create">Cadastrar</a>
+          <a mat-list-item routerLink="patient/list">Listar</a>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel style="box-shadow: none">
+          <mat-expansion-panel-header style="margin-left: -8px">
+            <mat-panel-title class="text-[16px]">Dentista</mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="dentist/create">Cadastrar</a>
+          <a mat-list-item routerLink="dentist/list">Listar</a>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel style="box-shadow: none">
+          <mat-expansion-panel-header style="margin-left: -8px">
+            <mat-panel-title class="text-[16px]">Agendamento</mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="scheduling/create">Agendar</a>
+          <a mat-list-item routerLink="scheduling/list">Agendamentos</a>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel style="box-shadow: none">
+          <mat-expansion-panel-header style="margin-left: -8px">
+            <mat-panel-title class="text-[16px]">Registro Clínico</mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="medicalRecord/create">Criar</a>
+          <a mat-list-item routerLink="medicalRecord/list">Consultar</a>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-nav-list>
+  </mat-drawer>
+  }
+  <mat-drawer-content>
+    <div class="text-center min-h-[600px]">
+      <router-outlet>
+        <app-loading></app-loading>
+      </router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+@if (estaLogado) {
+<app-footer></app-footer>
+}

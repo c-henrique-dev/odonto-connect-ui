@@ -1,0 +1,21 @@
+<div class="h-screen flex flex-col">
+    @for (dentist of dentists; track $index) {
+    <mat-card class="p-6 shadow-lg border border-gray-200 rounded-lg mt-5 mx-52">
+        <h2 class="text-xl font-semibold mb-2 flex justify-start">Profissional: {{ dentist.name }}</h2>
+        <div class="grid grid-cols-3 gap-2 mt-5">
+
+            <div class="flex">
+                <p class="text-gray-600">Especialidade:&nbsp;&nbsp;{{ dentist.specialty }}</p>
+            </div>
+
+            <div class="flex">
+                <p class="text-gray-600">E-mail:&nbsp;&nbsp;{{ dentist.email }}</p>
+            </div>
+
+            <div class="flex">
+                <p class="text-gray-600">Telefone:&nbsp;&nbsp;{{ dentist.telephone }}</p>
+            </div>
+        </div>
+    </mat-card>
+    }
+</div>

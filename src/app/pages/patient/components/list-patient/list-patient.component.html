@@ -1,0 +1,32 @@
+<div class="h-screen flex flex-col">
+    @for (patient of patients; track $index) {
+    <mat-card class="p-6 shadow-lg border border-gray-200 rounded-lg mt-5 mx-16">
+        <h2 class="text-xl font-semibold mb-2 flex justify-start">Paciente: {{ patient.name }}</h2>
+        <div class="grid grid-cols-3 gap-2 mt-5">
+            <div class="flex">
+                <p class="text-gray-600">Endereço:&nbsp;&nbsp;{{ patient.address }}</p>
+            </div>
+
+            <div class="flex">
+                <p class="text-gray-600">CPF:&nbsp;&nbsp;{{ patient.cpf }}</p>
+            </div>
+
+            <div class="flex">
+                <p class="text-gray-600">Data de Nascimento:&nbsp;&nbsp;{{ patient.date_birth | date:'dd/MM/yyyy' }}</p>
+            </div>
+
+            <div class="flex">
+                <p class="text-gray-600">E-mail:&nbsp;&nbsp;{{ patient.email }}</p>
+            </div>
+
+            <div class="flex">
+                <p class="text-gray-600">Telefone:&nbsp;&nbsp;{{ patient.telephone }}</p>
+            </div>
+
+            <div class="flex">
+                <p class="text-gray-600">Sexo:&nbsp;&nbsp;{{ patient.gender }}</p>
+            </div>
+        </div>
+    </mat-card>
+    }
+</div>

@@ -1,0 +1,12 @@
+:host {
+    border-radius: 10px;
+    background-color: rgb(59 130 246);    
+    font-weight: 500;
+    padding: 9px 15px;
+    color: white;
+}
+
+:host:hover {
+    background-color: #0d70b3;    
+    transition: 0.3s ease;
+}

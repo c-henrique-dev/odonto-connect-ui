@@ -1,0 +1,20 @@
+<div class="flex justify-center items-center h-screen">
+  <form class="max-w-md border border-gray-400 shadow-md rounded-md p-8" [formGroup]="loginForm">
+    <mat-form-field class="w-full">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email" class="rounded-md">
+      <mat-error>Insira um e-mail válido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full mt-4">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formControlName="password" class="rounded-md">
+      <mat-error>O campo senha é <strong>obrigatório</strong></mat-error>
+    </mat-form-field>
+
+    <div class="mt-6">
+      <button app-material-button type="submit" class="w-full text-lg" style="padding-top: 12px; padding-bottom: 12px;"
+        (click)="login()">Entrar</button>
+    </div>
+  </form>
+</div>
