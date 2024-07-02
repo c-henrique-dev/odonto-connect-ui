@@ -1,12 +1,12 @@
 @if (estaLogado) {
 <app-header></app-header>
-}
+} 
 <mat-drawer-container autosize>
   @if (estaLogado) {
-  <mat-drawer #drawer opened="true" mode="side" position="start">
-    <mat-nav-list>
+  <mat-drawer style="background-color: #F6FCFF;" #drawer opened="true" mode="side" position="start">
+    <mat-nav-list style="background-color: #F6FCFF;">
       <mat-accordion>
-        <mat-expansion-panel style="box-shadow: none">
+        <mat-expansion-panel style="box-shadow: none; background-color: #F6FCFF;">
           <mat-expansion-panel-header style="margin-left: -8px">
             <mat-panel-title class="text-[16px]">Paciente</mat-panel-title>
           </mat-expansion-panel-header>
@@ -15,7 +15,7 @@
         </mat-expansion-panel>
       </mat-accordion>
       <mat-accordion>
-        <mat-expansion-panel style="box-shadow: none">
+        <mat-expansion-panel style="box-shadow: none; background-color: #F6FCFF;">
           <mat-expansion-panel-header style="margin-left: -8px">
             <mat-panel-title class="text-[16px]">Dentista</mat-panel-title>
           </mat-expansion-panel-header>
@@ -24,7 +24,7 @@
         </mat-expansion-panel>
       </mat-accordion>
       <mat-accordion>
-        <mat-expansion-panel style="box-shadow: none">
+        <mat-expansion-panel style="box-shadow: none; background-color: #F6FCFF;">
           <mat-expansion-panel-header style="margin-left: -8px">
             <mat-panel-title class="text-[16px]">Agendamento</mat-panel-title>
           </mat-expansion-panel-header>
@@ -33,7 +33,7 @@
         </mat-expansion-panel>
       </mat-accordion>
       <mat-accordion>
-        <mat-expansion-panel style="box-shadow: none">
+        <mat-expansion-panel style="box-shadow: none; background-color: #F6FCFF;">
           <mat-expansion-panel-header style="margin-left: -8px">
             <mat-panel-title class="text-[16px]">Registro Clínico</mat-panel-title>
           </mat-expansion-panel-header>
