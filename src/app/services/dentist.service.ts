@@ -19,8 +19,18 @@ export class DentistService extends HttpBaseService {
     return this.httpPost(`${this.endpoint}/create`, payload);
   }
 
+
+  editDentist(payload: Dentist, id: number) {
+    return this.httpPatch(`${this.endpoint}/update/${id}`, payload);
+  }
+
+
   getDentists(name?: string): Observable<Dentists> {
     let params = new HttpParams();
     return this.httpGet(`${this.endpoint}/list`);
+  }
+
+  deleteDentist(id: number): Observable<void> {
+    return this.httpDelete(`${this.endpoint}/delete/${id}`);
   }
 }

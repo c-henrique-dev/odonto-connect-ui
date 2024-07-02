@@ -27,8 +27,8 @@ export class HttpBaseService {
     return this.httpClient.post(`${this.apiBase}${endpoint}`, dados);
   }
 
-  protected httpPut(endpoint: string, dados: any): Observable<any> {
-    return this.httpClient.put(`${this.apiBase}${endpoint}`, dados);
+  protected httpPatch(endpoint: string, dados: any): Observable<any> {
+    return this.httpClient.patch(`${this.apiBase}${endpoint}`, dados);
   }
 
   protected httpDelete(endpoint: string): Observable<any> {
