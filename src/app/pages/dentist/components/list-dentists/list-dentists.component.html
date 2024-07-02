@@ -3,7 +3,21 @@
     <mat-card class="p-6 shadow-lg border border-gray-200 rounded-lg mt-5 mx-52">
         <h2 class="text-xl font-semibold mb-2 flex justify-start">Profissional: {{ dentist.name }}</h2>
         <div class="grid grid-cols-3 gap-2 mt-5">
-
+            <div class="absolute right-0 top-0">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="openDialog(dentist)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Editar</span>
+                    </button>
+                    <button mat-menu-item (click)="deleteDentist(dentist.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Deletar</span>
+                    </button>
+                </mat-menu>
+            </div>
             <div class="flex">
                 <p class="text-gray-600">Especialidade:&nbsp;&nbsp;{{ dentist.specialty }}</p>
             </div>

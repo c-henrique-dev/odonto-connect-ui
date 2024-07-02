@@ -3,11 +3,26 @@
     <mat-card class="p-6 shadow-lg border border-gray-200 rounded-lg mt-5 mx-16">
         <h2 class="text-xl font-semibold mb-2 flex justify-start">Paciente: {{ patient.name }}</h2>
         <div class="grid grid-cols-3 gap-2 mt-5">
+            <div class="absolute right-0 top-0">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="openDialog(patient)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Editar</span>
+                    </button>
+                    <button mat-menu-item (click)="deletePatient(patient.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Deletar</span>
+                    </button>
+                </mat-menu>
+            </div>
             <div class="flex">
-                <p class="text-gray-600">Endereço:&nbsp;&nbsp;{{ patient.address }}</p>
+                <p class="text-gray-600">Endereço:&nbsp;&nbsp;{{ patient.address.city }}</p>
             </div>
 
-            <div class="flex">
+            <div class="flex justify-center">
                 <p class="text-gray-600">CPF:&nbsp;&nbsp;{{ patient.cpf }}</p>
             </div>
 
@@ -19,7 +34,7 @@
                 <p class="text-gray-600">E-mail:&nbsp;&nbsp;{{ patient.email }}</p>
             </div>
 
-            <div class="flex">
+            <div class="flex justify-center">
                 <p class="text-gray-600">Telefone:&nbsp;&nbsp;{{ patient.telephone }}</p>
             </div>
 
