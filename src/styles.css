@@ -3,9 +3,15 @@
 @tailwind utilities;
 
 body, html {
-    background-color: #f6fcff;
     padding: 0;
     margin: 0;
     height: 100%;
     font-family: Roboto, "Helvetica Neue", sans-serif;
   }
+
+  h1 {
+    font-weight: bold;
+    font-size: x-large;
+    
+  }
+  

@@ -10,7 +10,7 @@ import { Patient } from '../../../../models/patient.model';
 import { catchError } from 'rxjs';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatStepperModule } from '@angular/material/stepper';
-import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 import { ButtonComponent } from '../../../../components/button/button.component';
 
 @Component({
@@ -71,7 +71,7 @@ export class CreatePatientComponent implements OnInit {
           return [];
         })
       )
-      .subscribe((resposta) => {
+      .subscribe(() => {
         this.snackBarService.open('Paciente cadastrado com sucesso!');
       });
   }

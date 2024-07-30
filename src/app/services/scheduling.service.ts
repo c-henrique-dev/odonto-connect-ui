@@ -17,6 +17,10 @@ export class SchedulingService extends HttpBaseService {
     return this.httpPost(`${this.endpoint}/create`, payload);
   }
 
+  cancelScheduling(id: number) {
+    return this.httpPost(`${this.endpoint}/cancel/${id}`);
+  }
+
   getSchedulings(name?: string) {
     let params = new HttpParams();
 

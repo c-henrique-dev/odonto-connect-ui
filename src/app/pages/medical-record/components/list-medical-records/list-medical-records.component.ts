@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { MedicalRecord } from '../../../../models/medical-record.model';
+import { Component, OnInit } from '@angular/core';
 import { MedicalRecordService } from '../../../../services/medical-record.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -23,12 +22,12 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './list-medical-records.component.html',
   styleUrl: './list-medical-records.component.css',
 })
-export class ListMedicalRecordsComponent {
+export class ListMedicalRecordsComponent implements OnInit {
   medicalRecords!: MedicalRecords;
   inputValue: string = '';
   name!: string;

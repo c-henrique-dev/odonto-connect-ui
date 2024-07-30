@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -27,11 +27,12 @@ import { catchError } from 'rxjs';
     MatStepperModule,
     NgxMaskDirective,
     ButtonComponent,
-    MatDialogModule
-  ],  templateUrl: './edit-dentist.component.html',
-  styleUrl: './edit-dentist.component.css'
+    MatDialogModule,
+  ],
+  templateUrl: './edit-dentist.component.html',
+  styleUrl: './edit-dentist.component.css',
 })
-export class EditDentistComponent {
+export class EditDentistComponent implements OnInit {
   formDentist!: FormGroup;
 
   constructor(
@@ -71,7 +72,7 @@ export class EditDentistComponent {
             return [];
           })
         )
-        .subscribe((resposta) => {
+        .subscribe(() => {
           this.snackBarService.open('Dentista atualizado com sucesso!');
           window.location.reload();
         });
@@ -92,5 +93,4 @@ export class EditDentistComponent {
     };
     this.editDentist(payload);
   }
-
 }

@@ -23,7 +23,7 @@ export class HttpBaseService {
     return this.httpClient.get(`${this.apiBase}${endpoint}`, { responseType: 'blob' });
   }
 
-  protected httpPost(endpoint: string, dados: any): Observable<any> {
+  protected httpPost(endpoint: string, dados?: any): Observable<any> {
     return this.httpClient.post(`${this.apiBase}${endpoint}`, dados);
   }
 

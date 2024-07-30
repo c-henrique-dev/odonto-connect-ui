@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -32,12 +32,12 @@ import { ButtonComponent } from '../../../../components/button/button.component'
     MatDatepickerModule,
     InputmaterialComponent,
     MatIconModule,
-    ButtonComponent
+    ButtonComponent,
   ],
   templateUrl: './create-medical-record.component.html',
   styleUrl: './create-medical-record.component.css',
 })
-export class CreateMedicalRecordComponent {
+export class CreateMedicalRecordComponent implements OnInit {
   formMedicalRecord!: FormGroup;
   patients!: Patient[];
   selectedFile!: File;
@@ -54,16 +54,19 @@ export class CreateMedicalRecordComponent {
     this.listPatients();
   }
 
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-  }  
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      this.selectedFile = input.files[0];
+    }
+  }
 
   createForm() {
     this.formMedicalRecord = this.formBuilder.group({
       record_date: ['', Validators.required],
       description: ['', Validators.required],
       patient_id: ['', Validators.required],
-      attachemnt: ['', Validators.required]
+      attachment: ['', Validators.required],
     });
   }
 
@@ -75,7 +78,7 @@ export class CreateMedicalRecordComponent {
     const formData = new FormData();
     formData.append('description', payload.description);
     formData.append('patient_id', payload.patient_id);
-    formData.append('record_date', payload.record_date); 
+    formData.append('record_date', payload.record_date);
     formData.append('attachment', payload.attachment);
 
     this.medicalRecordService
@@ -86,7 +89,7 @@ export class CreateMedicalRecordComponent {
           return [];
         })
       )
-      .subscribe((resposta) => {
+      .subscribe(() => {
         this.clearForm();
         this.snackBarService.open('Prontuário cadastrado com sucesso!');
       });
@@ -106,6 +109,6 @@ export class CreateMedicalRecordComponent {
   listPatients() {
     this.patientService.getPatients().subscribe((response) => {
       this.patients = response.data;
-    })
+    });
   }
 }

@@ -1,6 +1,6 @@
-<div class="flex justify-center bg-white h-screen">
+<div class="flex flex-col items-center h-screen mt-5">
+    <h1>Cadastro do Registro Clínico </h1>
     <form class="w-full max-w-4xl mt-5 px-8 pt-6 pb-8 mb-4" [formGroup]="formMedicalRecord">
-        <h2 class="text-2xl mb-5">Cadastro do prontuário</h2>
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <input app-input-material required formControlName="record_date" type="datetime-local" />

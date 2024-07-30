@@ -1,57 +1,55 @@
-@if (estaLogado) {
-<app-header></app-header>
-} 
 <mat-drawer-container autosize>
-  @if (estaLogado) {
-  <mat-drawer style="background-color: #F6FCFF;" #drawer opened="true" mode="side" position="start">
-    <mat-nav-list style="background-color: #F6FCFF;">
+  <mat-drawer class="!bg-[#70DBDB] !w-[220px]" #drawer opened="true" mode="side" position="start">
+    <div class="text-center mt-6 mb-3">
+      <a routerLink="/" class="uppercase text-white">Odonto <span class="font-extrabold">Connect</span></a>
+    </div>
+    <mat-nav-list style="background-color: #70DBDB">
       <mat-accordion>
-        <mat-expansion-panel style="box-shadow: none; background-color: #F6FCFF;">
-          <mat-expansion-panel-header style="margin-left: -8px">
-            <mat-panel-title class="text-[16px]">Paciente</mat-panel-title>
+        <mat-expansion-panel class="!shadow-none !bg-[#70DBDB]">
+          <mat-expansion-panel-header style="margin-left: -8px;">
+            <mat-panel-title class="text-[16px] !text-white">Paciente</mat-panel-title>
           </mat-expansion-panel-header>
-          <a mat-list-item routerLink="patient/create">Cadastrar</a>
-          <a mat-list-item routerLink="patient/list">Listar</a>
+          <a mat-list-item routerLink="/patient/create"><span class="text-white">Cadastrar</span></a>
+          <a mat-list-item routerLink="/patient/list"><span class="text-white">Listar</span></a>
         </mat-expansion-panel>
       </mat-accordion>
+
       <mat-accordion>
-        <mat-expansion-panel style="box-shadow: none; background-color: #F6FCFF;">
+        <mat-expansion-panel style="box-shadow: none; background-color: #70DBDB">
           <mat-expansion-panel-header style="margin-left: -8px">
-            <mat-panel-title class="text-[16px]">Dentista</mat-panel-title>
+            <mat-panel-title class="text-[16px] !text-white">Dentista</mat-panel-title>
           </mat-expansion-panel-header>
-          <a mat-list-item routerLink="dentist/create">Cadastrar</a>
-          <a mat-list-item routerLink="dentist/list">Listar</a>
+          <a mat-list-item routerLink="/dentist/create"><span class="text-white">Cadastrar</span></a>
+          <a mat-list-item routerLink="/dentist/list"><span class="text-white">Listar</span></a>
         </mat-expansion-panel>
       </mat-accordion>
+      
       <mat-accordion>
-        <mat-expansion-panel style="box-shadow: none; background-color: #F6FCFF;">
+        <mat-expansion-panel style="box-shadow: none; background-color: #70DBDB">
           <mat-expansion-panel-header style="margin-left: -8px">
-            <mat-panel-title class="text-[16px]">Agendamento</mat-panel-title>
+            <mat-panel-title class="text-[16px] !text-white">Agendamento</mat-panel-title>
           </mat-expansion-panel-header>
-          <a mat-list-item routerLink="scheduling/create">Agendar</a>
-          <a mat-list-item routerLink="scheduling/list">Agendamentos</a>
+          <a mat-list-item routerLink="/scheduling/create"><span class="text-white">Agendar</span></a>
+          <a mat-list-item routerLink="/scheduling/list"><span class="text-white">Agendamentos</span></a>
         </mat-expansion-panel>
       </mat-accordion>
+
       <mat-accordion>
-        <mat-expansion-panel style="box-shadow: none; background-color: #F6FCFF;">
+        <mat-expansion-panel style="box-shadow: none; background-color: #70DBDB">
           <mat-expansion-panel-header style="margin-left: -8px">
-            <mat-panel-title class="text-[16px]">Registro Clínico</mat-panel-title>
+            <mat-panel-title class="text-[16px] !text-white">Registro Clínico</mat-panel-title>
           </mat-expansion-panel-header>
-          <a mat-list-item routerLink="medicalRecord/create">Criar</a>
-          <a mat-list-item routerLink="medicalRecord/list">Consultar</a>
+          <a mat-list-item routerLink="/medicalRecord/create"><span class="text-white">Criar</span></a>
+          <a mat-list-item routerLink="/medicalRecord/list"><span class="text-white">Consultar</span></a>
         </mat-expansion-panel>
       </mat-accordion>
+      
+      <button class="text-left" mat-list-item (click)="sair()"><span class="text-white font-medium">Sair</span></button>
     </mat-nav-list>
   </mat-drawer>
-  }
-  <mat-drawer-content>
-    <div class="text-center min-h-[600px]">
+  <mat-drawer-content class="text-center">
       <router-outlet>
         <app-loading></app-loading>
       </router-outlet>
-    </div>
   </mat-drawer-content>
 </mat-drawer-container>
-@if (estaLogado) {
-<app-footer></app-footer>
-}

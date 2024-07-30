@@ -1,47 +1,62 @@
-<div class="h-screen flex flex-col">
-    @for (patient of patients; track $index) {
-    <mat-card class="p-6 shadow-lg border border-gray-200 rounded-lg mt-5 mx-16">
-        <h2 class="text-xl font-semibold mb-2 flex justify-start">Paciente: {{ patient.name }}</h2>
-        <div class="grid grid-cols-3 gap-2 mt-5">
-            <div class="absolute right-0 top-0">
-                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                    <mat-icon>more_vert</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="openDialog(patient)">
-                        <mat-icon>edit</mat-icon>
-                        <span>Editar</span>
-                    </button>
-                    <button mat-menu-item (click)="deletePatient(patient.id)">
-                        <mat-icon>delete</mat-icon>
-                        <span>Deletar</span>
-                    </button>
-                </mat-menu>
-            </div>
-            <div class="flex">
-                <p class="text-gray-600">Endereço:&nbsp;&nbsp;{{ patient.address.city }}</p>
-            </div>
+<div class="w-[90%] h-screen mt-5 mx-auto flex flex-col items-center">
+    <div class="w-full flex justify-between">
+        <h1>Pacientes</h1>
+        <mat-form-field class="w-80">
+            <mat-label>Pesquise por um paciente</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+    </div>
 
-            <div class="flex justify-center">
-                <p class="text-gray-600">CPF:&nbsp;&nbsp;{{ patient.cpf }}</p>
-            </div>
+    <table class="!bg-transparent" mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nome </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
 
-            <div class="flex">
-                <p class="text-gray-600">Data de Nascimento:&nbsp;&nbsp;{{ patient.date_birth | date:'dd/MM/yyyy' }}</p>
-            </div>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> E-mail </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
 
-            <div class="flex">
-                <p class="text-gray-600">E-mail:&nbsp;&nbsp;{{ patient.email }}</p>
-            </div>
+        <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef> Sexo </th>
+            <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+        </ng-container>
 
-            <div class="flex justify-center">
-                <p class="text-gray-600">Telefone:&nbsp;&nbsp;{{ patient.telephone }}</p>
-            </div>
+        <ng-container matColumnDef="telephone">
+            <th mat-header-cell *matHeaderCellDef> Telefone </th>
+            <td mat-cell *matCellDef="let element"> {{element.telephone | telephone}} </td>
+        </ng-container>
 
-            <div class="flex">
-                <p class="text-gray-600">Sexo:&nbsp;&nbsp;{{ patient.gender }}</p>
-            </div>
-        </div>
-    </mat-card>
-    }
+        <ng-container matColumnDef="date_birth">
+            <th mat-header-cell *matHeaderCellDef> Nascimento </th>
+            <td mat-cell *matCellDef="let element"> {{element.date_birth | date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef> Editar </th>
+            <td class="text-blue-500 cursor-pointer" mat-cell *matCellDef="let element">
+                <div>
+                    <button mat-flat-button color="primary" class="!text-white"
+                        (click)="openDialog(element)">Editar</button>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="excluir">
+            <th mat-header-cell *matHeaderCellDef> Excluir </th>
+            <td class="text-red-500 cursor-pointer" mat-cell *matCellDef="let element">
+                <div>
+                    <button mat-flat-button color="warn" (click)="deletePatient(element)">Excluir</button>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator class="!bg-transparent" [pageSizeOptions]="[10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements">
+    </mat-paginator>
 </div>

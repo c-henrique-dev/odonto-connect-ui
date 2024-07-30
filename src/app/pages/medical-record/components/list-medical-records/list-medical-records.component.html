@@ -1,30 +1,36 @@
-<div class="h-screen">
-    <div class="w-80 ml-16 mt-5">
-        <mat-form-field class="w-full">
+<div class="h-screen flex flex-col items-center">
+    <div class="w-[90%] mt-5 flex justify-between">
+        <h1>Registro Clínicos</h1>
+        <mat-form-field class="w-80">
             <input type="text" matInput placeholder="Pesquisar" name="search" [(ngModel)]="inputValue">
             <button matSuffix mat-button (click)="pesquisar()"><mat-icon>search</mat-icon></button>
         </mat-form-field>
     </div>
-    @if (medicalRecords) {
-    @for (medicalRecord of medicalRecords.data; track $index) {
-    <mat-card class="grid grid-cols-4 p-4 w-[28%] ml-16 shadow-lg border border-gray-200 rounded-lg">
-        <div class="absolute top-0 right-0">
-            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="generateMedicalRecord(medicalRecord.patient.id!)">
-                    <mat-icon>download</mat-icon>
-                    <span>Baixar Prontuário</span>
-                </button>
-            </mat-menu>
+    <div class="flex justify-center">
+        <div class="grid grid-cols-3 mt-5 gap-5">
+            @if (medicalRecords) {
+            @for (medicalRecord of medicalRecords.data; track $index) {
+            <mat-card class="p-4 w-80">
+                <div class="absolute top-0 right-0">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="generateMedicalRecord(medicalRecord.patient.id!)">
+                            <mat-icon>download</mat-icon>
+                            <span>Baixar Prontuário</span>
+                        </button>
+                    </mat-menu>
+                </div>
+                <h2 class="text-xl font-semibold mb-2 flex justify-start">{{ medicalRecord.patient.name }}</h2>
+                <div class="flex justify-start mt-5">
+                    <p class="text-gray-600">Data do prontuário:&nbsp;&nbsp;{{ medicalRecord.record_date |
+                        date:'dd/MM/yyyy'}}
+                    </p>
+                </div>
+            </mat-card>
+            }
+            }
         </div>
-        <h2 class="text-xl font-semibold mb-2 flex justify-start">Registro de {{ medicalRecord.patient.name }}</h2>
-        <div class="flex justify-start mt-5">
-            <p class="text-gray-600">Data do prontuário:&nbsp;&nbsp;{{ medicalRecord.record_date | date:'dd/MM/yyyy'}}
-            </p>
-        </div>
-    </mat-card>
-    }
-    }
+    </div>
 </div>

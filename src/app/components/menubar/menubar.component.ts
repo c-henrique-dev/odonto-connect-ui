@@ -1,15 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { AuthService } from '../../services/auth.service';
-import { FooterComponent } from '../footer/footer.component';
 import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
@@ -25,17 +23,18 @@ import { LoadingComponent } from '../loading/loading.component';
     MatSidenavModule,
     MatButtonModule,
     RouterOutlet,
-    HeaderComponent,
-    FooterComponent,
-    LoadingComponent
+    LoadingComponent,
   ],
   templateUrl: './menubar.component.html',
   styleUrl: './menubar.component.css',
 })
-export class MenubarComponent {
+export class MenubarComponent implements OnInit {
   estaLogado: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.authService.usuarioEstaLogado().subscribe((estaLogado) => {
@@ -43,4 +42,8 @@ export class MenubarComponent {
     });
   }
 
+  sair() {
+    this.authService.sair();
+    this.router.navigate(['login']);
+  }
 }

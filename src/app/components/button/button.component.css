@@ -1,12 +1,12 @@
 :host {
     border-radius: 10px;
-    background-color: #3f51b5;    
+    background-color: #6acfcf;    
     font-weight: 500;
     padding: 9px 15px;
     color: white;
 }
 
 :host:hover {
-    background-color: #0d70b3;    
+    background-color: #5aadad;    
     transition: 0.3s ease;
 }

@@ -34,7 +34,7 @@ export class AuthService extends HttpBaseService {
     sessionStorage.removeItem('token');
     this.subjectUsuario.next(null);
     this.subjectLogin.next(false);
-    this.router.navigate(['auth/login']);
+    this.router.navigate(['login']);
   }
 
   usuarioEstaLogado(): Observable<boolean> {

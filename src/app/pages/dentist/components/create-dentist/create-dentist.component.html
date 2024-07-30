@@ -4,39 +4,35 @@
         <div class="flex justify-center items-center">
             <form class="w-full max-w-4xl px-8 pt-6 pb-8 mb-4" [formGroup]="formDentist">
                 <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <mat-form-field class="w-full">
-                            <mat-label>Nome</mat-label>
-                            <input matInput placeholder="Informe o nome" formControlName="name" />
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field class="w-full">
-                            <mat-label>CPF</mat-label>
-                            <input mask="000.000.000-00" matInput type="email" placeholder="Insira o cpf" formControlName="cpf" />
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field class="w-full">
-                            <mat-label>Especialidade</mat-label>
-                            <mat-select formControlName="specialty">
-                                <mat-option value="male">Masculino</mat-option>
-                                <mat-option value="female">Feminino</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field class="w-full">
-                            <mat-label>Telefone</mat-label>
-                            <input mask="(00) 0 0000-0000" type="tel" matInput placeholder="Insira o telefone" formControlName="telephone" />
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field class="w-full">
-                            <mat-label>E-mail</mat-label>
-                            <input matInput type="email" placeholder="Insira o email" formControlName="email" />
-                        </mat-form-field>
-                    </div>
+                    <mat-form-field class="w-full">
+                        <mat-label>Nome</mat-label>
+                        <input matInput placeholder="Informe o nome" formControlName="name" />
+                    </mat-form-field>
+
+                    <mat-form-field class="w-full">
+                        <mat-label>CPF</mat-label>
+                        <input mask="000.000.000-00" matInput type="email" placeholder="Insira o cpf"
+                            formControlName="cpf" />
+                    </mat-form-field>
+
+                    <mat-form-field class="w-full">
+                        <mat-label>Especialidade</mat-label>
+                        <mat-select formControlName="specialty">
+                            <mat-option value="male">Masculino</mat-option>
+                            <mat-option value="female">Feminino</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-full">
+                        <mat-label>Telefone</mat-label>
+                        <input mask="(00) 0 0000-0000" type="tel" matInput placeholder="Insira o telefone"
+                            formControlName="telephone" />
+                    </mat-form-field>
+
+                    <mat-form-field class="w-full">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput type="email" placeholder="Insira o email" formControlName="email" />
+                    </mat-form-field>
                 </div>
             </form>
         </div>
@@ -50,35 +46,31 @@
             <div class="flex justify-center mt-5">
                 <form class="w-full max-w-4xl" [formGroup]="formAddress">
                     <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <mat-form-field class="w-full">
-                                <mat-label>Cidade</mat-label>
-                                <input matInput placeholder="Informe a cidade" formControlName="city" />
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field class="w-full">
-                                <mat-label>Rua</mat-label>
-                                <input matInput placeholder="Informe a rua" formControlName="street" />
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field class="w-full">
-                                <mat-label>CEP</mat-label>
-                                <input mask="00000-000" matInput placeholder="Insira o cep" formControlName="cep" />
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field class="w-full">
-                                <mat-label>Número</mat-label>
-                                <input matInput type="text" placeholder="Insira o número" formControlName="number" />
-                            </mat-form-field>
-                        </div>
+                        <mat-form-field class="w-full">
+                            <mat-label>Cidade</mat-label>
+                            <input matInput placeholder="Informe a cidade" formControlName="city" />
+                        </mat-form-field>
+
+                        <mat-form-field class="w-full">
+                            <mat-label>Rua</mat-label>
+                            <input matInput placeholder="Informe a rua" formControlName="street" />
+                        </mat-form-field>
+
+                        <mat-form-field class="w-full">
+                            <mat-label>CEP</mat-label>
+                            <input mask="00000-000" matInput placeholder="Insira o cep" formControlName="cep" />
+                        </mat-form-field>
+
+                        <mat-form-field class="w-full">
+                            <mat-label>Número</mat-label>
+                            <input matInput type="text" placeholder="Insira o número" formControlName="number" />
+                        </mat-form-field>
                     </div>
                     <div class="flex justify-between mt-4">
                         <button app-material-button matStepperPrevious>
                             Voltar
                         </button>
+
                         <button app-material-button (click)="saveDentist()">
                             Cadastrar
                         </button>

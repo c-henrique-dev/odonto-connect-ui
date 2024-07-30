@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { BehaviorSubject } from 'rxjs';
 import { LoadingService } from '../../services/loading.service';
 
 @Component({

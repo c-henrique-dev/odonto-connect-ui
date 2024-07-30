@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -17,8 +17,6 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { Patient } from '../../../../models/patient.model';
 import { catchError } from 'rxjs';
 import { SnackBarService } from '../../../../services/snack-bar.service';
-import { ListPatientComponent } from '../list-patient/list-patient.component';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-patient',
@@ -38,7 +36,7 @@ import { Router } from '@angular/router';
   templateUrl: './edit-patient.component.html',
   styleUrl: './edit-patient.component.css',
 })
-export class EditPatientComponent {
+export class EditPatientComponent implements OnInit {
   formPatient!: FormGroup;
 
   constructor(
@@ -80,7 +78,7 @@ export class EditPatientComponent {
             return [];
           })
         )
-        .subscribe((resposta) => {
+        .subscribe(() => {
           this.snackBarService.open('Paciente atualizado com sucesso!');
           window.location.reload();
         });

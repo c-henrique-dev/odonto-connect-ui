@@ -1,0 +1,17 @@
+<div class="w-[550px] h-[260px] p-5">
+    <span class="block text-center text-xl mb-4">Detalhes do Tratamento</span>
+    <form class="w-full" [formGroup]="formScheduling">
+        <div>
+            <mat-form-field class="w-full">
+                <mat-label>Tipo de tratamento</mat-label>
+                <input matInput readonly="true" formControlName="treatment_type" />
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="w-full">
+                <mat-label>Comentário</mat-label>
+                <textarea matInput [readonly]="true" formControlName="comment"></textarea>
+            </mat-form-field>
+        </div>
+    </form>
+</div>

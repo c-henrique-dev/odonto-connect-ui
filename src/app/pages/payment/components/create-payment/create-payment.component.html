@@ -1,0 +1,26 @@
+<div class="flex justify-center">
+    <form class="mt-5 px-8 pt-6 pb-3" [formGroup]="formPayment">
+        <mat-form-field class="w-full">
+            <mat-label>Valor</mat-label>
+            <input matInput placeholder="Informe o valor" formControlName="amount" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Tipo de Tratamento</mat-label>
+            <input matInput placeholder="Informe o tipo do tratamento" formControlName="payment_reason" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Escolha a data de pagamento</mat-label>
+            <input matInput [matDatepicker]="datepicker" formControlName="payment_date" placeholder="DD/MM/AAAA">
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker startView="multi-year" (closed)="datepicker.close()"></mat-datepicker>
+        </mat-form-field>
+
+        <div class="flex justify-center">
+            <button app-material-button class="text-lg w-32" type="button" (click)="savePayment()">
+                Pagar
+            </button>
+        </div>
+    </form>
+</div>

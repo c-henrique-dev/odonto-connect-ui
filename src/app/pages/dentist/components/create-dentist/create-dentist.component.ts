@@ -30,7 +30,7 @@ import { ButtonComponent } from '../../../../components/button/button.component'
     MatDatepickerModule,
     MatStepperModule,
     NgxMaskDirective,
-    ButtonComponent
+    ButtonComponent,
   ],
   templateUrl: './create-dentist.component.html',
   styleUrl: './create-dentist.component.css',
@@ -79,7 +79,7 @@ export class CreateDentistComponent implements OnInit {
           return [];
         })
       )
-      .subscribe((resposta) => {
+      .subscribe(() => {
         this.clearForm();
         this.snackBarService.open('Dentista cadastrado com sucesso!');
       });

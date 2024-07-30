@@ -2,7 +2,6 @@ import { Injectable, Injector } from '@angular/core';
 import { HttpBaseService } from './http-base.service';
 import { Patient } from '../models/patient.model';
 import { Observable } from 'rxjs';
-import { HttpParams } from '@angular/common/http';
 import { Patients } from '../models/patients.model';
 
 @Injectable({
@@ -23,8 +22,7 @@ export class PatientService extends HttpBaseService {
     return this.httpPatch(`${this.endpoint}/update/${id}`, payload);
   }
 
-  getPatients(name?: string): Observable<Patients> {
-    let params = new HttpParams();
+  getPatients(): Observable<Patients> {
     return this.httpGet(`${this.endpoint}/list`);
   }
 

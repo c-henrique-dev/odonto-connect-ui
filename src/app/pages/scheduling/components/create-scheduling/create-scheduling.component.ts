@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -37,7 +37,7 @@ import { ButtonComponent } from '../../../../components/button/button.component'
   templateUrl: './create-scheduling.component.html',
   styleUrl: './create-scheduling.component.css',
 })
-export class CreateSchedulingComponent {
+export class CreateSchedulingComponent implements OnInit {
   formScheduling!: FormGroup;
   patients!: Patient[];
   dentists!: Dentist[];
@@ -79,7 +79,7 @@ export class CreateSchedulingComponent {
           return [];
         })
       )
-      .subscribe((resposta) => {
+      .subscribe(() => {
         this.clearForm();
         this.snackBarService.open('Agendamento efetuado com sucesso!');
       });

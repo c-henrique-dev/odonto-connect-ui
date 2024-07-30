@@ -3,7 +3,6 @@ import { HttpBaseService } from './http-base.service';
 import { Dentist } from '../models/dentist.model';
 import { Observable } from 'rxjs';
 import { Dentists } from '../models/dentists.model';
-import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -19,14 +18,11 @@ export class DentistService extends HttpBaseService {
     return this.httpPost(`${this.endpoint}/create`, payload);
   }
 
-
   editDentist(payload: Dentist, id: number) {
     return this.httpPatch(`${this.endpoint}/update/${id}`, payload);
   }
 
-
-  getDentists(name?: string): Observable<Dentists> {
-    let params = new HttpParams();
+  getDentists(): Observable<Dentists> {
     return this.httpGet(`${this.endpoint}/list`);
   }
 
