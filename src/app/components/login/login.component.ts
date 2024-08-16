@@ -12,6 +12,7 @@ import { Login } from '../../models/login.model';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { SnackBarService } from '../../services/snack-bar.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ import { SnackBarService } from '../../services/snack-bar.service';
     ReactiveFormsModule,
     MatInputModule,
     ButtonComponent,
+    MatIconModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -28,6 +30,7 @@ import { SnackBarService } from '../../services/snack-bar.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   authLogin!: Login;
+  passwordFieldType: string = 'password';
 
   constructor(
     private authService: AuthService,
@@ -56,5 +59,10 @@ export class LoginComponent implements OnInit {
           this.snackBarService.open('Usuário ou Senha inválido(s)!');
         },
       });
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType =
+      this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }

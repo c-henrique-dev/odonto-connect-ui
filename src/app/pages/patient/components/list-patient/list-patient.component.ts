@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { PatientService } from '../../../../services/patient.service';
 import { Patient } from '../../../../models/patient.model';
@@ -22,29 +28,35 @@ import { CpfPipe } from '../../../../../pipes/cpf.pipe';
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatInputModule,
     TelephonePipe,
-    CpfPipe
+    CpfPipe,
   ],
   templateUrl: './list-patient.component.html',
   styleUrl: './list-patient.component.css',
 })
 export class ListPatientComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = [ 'name', 'email', 'telephone', 'date_birth', 'editar', 'excluir'];
+  displayedColumns: string[] = [
+    'name',
+    'email',
+    'telephone',
+    'date_birth',
+    'editar',
+    'excluir',
+  ];
   dataSource = new MatTableDataSource<Patient>();
-  patients: Patient[] = [];
   readonly dialog = inject(MatDialog);
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private readonly patientService: PatientService) {}
 
   ngOnInit(): void {
-    this.getPatients();
+    this.patientService.updateSubjectPatient();
   }
 
   ngAfterViewInit() {
+    this.loadPatientTable();
     this.dataSource.paginator = this.paginator;
   }
 
@@ -60,18 +72,16 @@ export class ListPatientComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
-  getPatients() {
-    this.patientService.getPatients().subscribe((result) => {
-      this.patients = result.data;
-      this.dataSource.data = this.patients;
+  loadPatientTable() {
+    this.patientService.getSubjectPatient().subscribe((patient) => {
+      this.dataSource.data = patient;
     });
   }
 
   deletePatient(id: number | undefined) {
     if (id != undefined) {
       this.patientService.deletePatient(id).subscribe(() => {
-        this.getPatients();
+        this.patientService.updateSubjectPatient();
       });
     }
   }

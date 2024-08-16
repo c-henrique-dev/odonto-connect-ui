@@ -44,7 +44,8 @@ export class ListDentistsComponent implements OnInit, AfterViewInit {
   constructor(private readonly dentistService: DentistService) {}
 
   ngOnInit(): void {
-    this.getDentists();
+    this.dentistService.updateSubjectDentist();
+    this.loadDentistTable();  
   }
 
   ngAfterViewInit() {
@@ -63,17 +64,16 @@ export class ListDentistsComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  getDentists() {
-    this.dentistService.getDentists().subscribe((result) => {
-      this.dentists = result.data;
-      this.dataSource.data = this.dentists;
+  loadDentistTable() {
+    this.dentistService.getSubjectDentist().subscribe((dentist) => {
+      this.dataSource.data = dentist;
     });
   }
 
   deleteDentist(id: number | undefined) {
     if (id != undefined) {
       this.dentistService.deleteDentist(id).subscribe(() => {
-        this.getDentists();
+        this.dentistService.updateSubjectDentist();
       });
     }
   }

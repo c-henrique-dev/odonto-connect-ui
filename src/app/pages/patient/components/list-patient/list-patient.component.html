@@ -1,5 +1,5 @@
-<div class="w-[90%] h-screen mt-5 mx-auto flex flex-col items-center">
-    <div class="w-full flex justify-between">
+<div class="w-[90%] h-screen mx-auto flex flex-col items-center">
+    <div class="w-full flex justify-between mt-5">
         <h1>Pacientes</h1>
         <mat-form-field class="w-80">
             <mat-label>Pesquise por um paciente</mat-label>
@@ -47,7 +47,7 @@
             <th mat-header-cell *matHeaderCellDef> Excluir </th>
             <td class="text-red-500 cursor-pointer" mat-cell *matCellDef="let element">
                 <div>
-                    <button mat-flat-button color="warn" (click)="deletePatient(element)">Excluir</button>
+                    <button mat-flat-button color="warn" (click)="deletePatient(element.id)">Excluir</button>
                 </div>
             </td>
         </ng-container>

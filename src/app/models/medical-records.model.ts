@@ -16,4 +16,5 @@ export interface MedicalRecords {
       };
     }
   ];
+  total: number;
 }

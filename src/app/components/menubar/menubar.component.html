@@ -1,13 +1,18 @@
 <mat-drawer-container autosize>
   <mat-drawer class="!bg-[#70DBDB] !w-[220px]" #drawer opened="true" mode="side" position="start">
     <div class="text-center mt-6 mb-3">
-      <a routerLink="/" class="uppercase text-white">Odonto <span class="font-extrabold">Connect</span></a>
+      <a routerLink="/" class="text-xl text-white">Odonto <span class="font-extrabold">Connect</span></a>
     </div>
-    <mat-nav-list style="background-color: #70DBDB">
+
+    <mat-nav-list>
       <mat-accordion>
         <mat-expansion-panel class="!shadow-none !bg-[#70DBDB]">
           <mat-expansion-panel-header style="margin-left: -8px;">
-            <mat-panel-title class="text-[16px] !text-white">Paciente</mat-panel-title>
+            <mat-panel-title class="text-[16px] !text-white">
+              <mat-icon class="mb-1 mr-2" aria-hidden="false" aria-label="Example person icon"
+                fontIcon="person"></mat-icon>
+              Paciente
+            </mat-panel-title>
           </mat-expansion-panel-header>
           <a mat-list-item routerLink="/patient/create"><span class="text-white">Cadastrar</span></a>
           <a mat-list-item routerLink="/patient/list"><span class="text-white">Listar</span></a>
@@ -15,19 +20,27 @@
       </mat-accordion>
 
       <mat-accordion>
-        <mat-expansion-panel style="box-shadow: none; background-color: #70DBDB">
+        <mat-expansion-panel class="!shadow-none !bg-[#70DBDB]">
           <mat-expansion-panel-header style="margin-left: -8px">
-            <mat-panel-title class="text-[16px] !text-white">Dentista</mat-panel-title>
+            <mat-panel-title class="text-[16px] !text-white">
+              <mat-icon class="mb-1 mr-2" aria-hidden="false" aria-label="Example dentist icon"
+                fontIcon="person"></mat-icon>
+              Dentista
+            </mat-panel-title>
           </mat-expansion-panel-header>
           <a mat-list-item routerLink="/dentist/create"><span class="text-white">Cadastrar</span></a>
           <a mat-list-item routerLink="/dentist/list"><span class="text-white">Listar</span></a>
         </mat-expansion-panel>
       </mat-accordion>
-      
+
       <mat-accordion>
-        <mat-expansion-panel style="box-shadow: none; background-color: #70DBDB">
+        <mat-expansion-panel class="!shadow-none !bg-[#70DBDB]">
           <mat-expansion-panel-header style="margin-left: -8px">
-            <mat-panel-title class="text-[16px] !text-white">Agendamento</mat-panel-title>
+            <mat-panel-title class="text-[16px] !text-white">
+              <mat-icon class="mb-1 mr-2" aria-hidden="false" aria-label="Example event icon"
+                fontIcon="event"></mat-icon>
+              Agendamento
+            </mat-panel-title>
           </mat-expansion-panel-header>
           <a mat-list-item routerLink="/scheduling/create"><span class="text-white">Agendar</span></a>
           <a mat-list-item routerLink="/scheduling/list"><span class="text-white">Agendamentos</span></a>
@@ -35,21 +48,31 @@
       </mat-accordion>
 
       <mat-accordion>
-        <mat-expansion-panel style="box-shadow: none; background-color: #70DBDB">
+        <mat-expansion-panel class="!shadow-none !bg-[#70DBDB]">
           <mat-expansion-panel-header style="margin-left: -8px">
-            <mat-panel-title class="text-[16px] !text-white">Registro Clínico</mat-panel-title>
+            <mat-panel-title class="text-[16px] !text-white">
+              <mat-icon class="mb-1 mr-2" aria-hidden="false" aria-label="Example event icon"
+                fontIcon="description"></mat-icon>
+              Registro Clínico
+            </mat-panel-title>
           </mat-expansion-panel-header>
           <a mat-list-item routerLink="/medicalRecord/create"><span class="text-white">Criar</span></a>
           <a mat-list-item routerLink="/medicalRecord/list"><span class="text-white">Consultar</span></a>
         </mat-expansion-panel>
       </mat-accordion>
-      
-      <button class="text-left" mat-list-item (click)="sair()"><span class="text-white font-medium">Sair</span></button>
+
+      <button class="text-left" mat-list-item (click)="sair()">
+        <mat-panel-title class="text-[16px] !text-white">
+          <mat-icon class="mb-1 mr-2 text-white font-medium" aria-hidden="false" aria-label="Example exit_to_app icon"
+            fontIcon="exit_to_app"></mat-icon>
+          <span class="text-white font-medium">Sair</span>
+        </mat-panel-title>
+      </button>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content class="text-center">
-      <router-outlet>
-        <app-loading></app-loading>
-      </router-outlet>
+    <router-outlet>
+      <app-loading></app-loading>
+    </router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>

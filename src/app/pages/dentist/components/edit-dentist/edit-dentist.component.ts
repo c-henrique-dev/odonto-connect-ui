@@ -13,6 +13,7 @@ import { DentistService } from '../../../../services/dentist.service';
 import { SnackBarService } from '../../../../services/snack-bar.service';
 import { Dentist } from '../../../../models/dentist.model';
 import { catchError } from 'rxjs';
+import { CardComponent } from "../../../../components/card/card.component";
 
 @Component({
   selector: 'app-edit-dentist',
@@ -28,12 +29,15 @@ import { catchError } from 'rxjs';
     NgxMaskDirective,
     ButtonComponent,
     MatDialogModule,
-  ],
+    CardComponent
+],
   templateUrl: './edit-dentist.component.html',
   styleUrl: './edit-dentist.component.css',
 })
 export class EditDentistComponent implements OnInit {
   formDentist!: FormGroup;
+  width = "550px";
+  padding = "1.0rem";
 
   constructor(
     private dentistService: DentistService,
@@ -74,7 +78,7 @@ export class EditDentistComponent implements OnInit {
         )
         .subscribe(() => {
           this.snackBarService.open('Dentista atualizado com sucesso!');
-          window.location.reload();
+          this.dentistService.updateSubjectDentist();
         });
     }
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { MedicalRecordService } from '../../../../services/medical-record.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -10,6 +10,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MedicalRecordFilterComponent } from '../medical-record-filter/medical-record-filter.component';
+import { CardComponent } from '../../../../components/card/card.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { PaginatorComponent } from "../../../../components/paginator/paginator.component";
 
 @Component({
   selector: 'app-list-medical-records',
@@ -23,14 +28,25 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatMenuModule,
     MatButtonModule,
-  ],
+    CardComponent,
+    MatPaginatorModule,
+    PaginatorComponent
+],
   templateUrl: './list-medical-records.component.html',
   styleUrl: './list-medical-records.component.css',
 })
-export class ListMedicalRecordsComponent implements OnInit {
+export class ListMedicalRecordsComponent implements AfterViewInit {
   medicalRecords!: MedicalRecords;
   inputValue: string = '';
   name!: string;
+  start_date!: string;
+  end_date!: string;
+  padding = '1rem';
+  width = '20rem';
+  size = 2;
+  page = 0;
+  totalMedicalRecords!: number;
+  readonly dialog = inject(MatDialog);
 
   constructor(
     private readonly medicalRecordService: MedicalRecordService,
@@ -38,18 +54,28 @@ export class ListMedicalRecordsComponent implements OnInit {
     private activatedRouter: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.activatedRouter.queryParams.subscribe((params) => {
       this.name = params['name'];
-      this.getMedicalRecords();
+      this.start_date = params['start_date'];
+      this.end_date = params['end_date'];
+      this.getMedicalRecords(this.page, this.size);
     });
   }
 
-  getMedicalRecords() {
+  getMedicalRecords(size: number, page: number) {
+    const adjustedSize = size + 1;
     this.medicalRecordService
-      .getMedicalRecords(this.name)
+      .getMedicalRecords(
+        this.name,
+        this.start_date,
+        this.end_date,
+        page,
+        adjustedSize
+      )
       .subscribe((result) => {
         this.medicalRecords = result;
+        this.totalMedicalRecords = result.total;
       });
   }
 
@@ -78,5 +104,10 @@ export class ListMedicalRecordsComponent implements OnInit {
     this.router.navigate(['medicalRecord/list'], {
       queryParams: { name: this.inputValue },
     });
+  }
+
+  openDialogFilter() {
+    const dialogConfig = new MatDialogConfig();
+    this.dialog.open(MedicalRecordFilterComponent, dialogConfig);
   }
 }

@@ -13,4 +13,5 @@ export interface Schedulings {
       patient: Patient;
     }
   ];
+  total: number;
 }

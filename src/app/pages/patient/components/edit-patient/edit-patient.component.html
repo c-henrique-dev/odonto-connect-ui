@@ -1,5 +1,6 @@
-<div class="h-[550px] p-10">
-    <form class="w-full max-w-4xl" [formGroup]="formPatient">
+<app-card [padding]="padding" [width]="width">
+    <h2 class="text-center">Atualize os Dados do Paciente</h2>
+    <form class="w-full max-w-4xl mt-5" [formGroup]="formPatient">
         <div class="grid grid-cols-2 gap-4">
             <mat-form-field class="w-full">
                 <mat-label>Nome</mat-label>
@@ -63,4 +64,4 @@
         </div>
 
     </form>
-</div>
+</app-card>

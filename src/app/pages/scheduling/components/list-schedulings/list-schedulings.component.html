@@ -1,16 +1,24 @@
-<div class="h-screen mt-5 flex flex-col items-center">
-    <div class="w-[90%] flex justify-between">
+<div class="h-screen flex flex-col items-center">
+    <div class="w-[90%] flex justify-between mt-5">
         <h1>Agendamentos</h1>
-        <mat-form-field class="w-80">
-            <input type="text" matInput placeholder="Pesquisar" name="search" [(ngModel)]="inputValue">
-            <button matSuffix mat-button (click)="pesquisar()"><mat-icon>search</mat-icon></button>
-        </mat-form-field>
+        <div class="flex">
+            <mat-form-field class="w-80 mr-5">
+                <input type="text" matInput placeholder="Pesquisar" name="search" [(ngModel)]="inputValue">
+                <button matSuffix mat-button (click)="pesquisar()"><mat-icon>search</mat-icon></button>
+            </mat-form-field>
+            <div class="example-button-container">
+                <button (click)="openDialogFilter()" mat-fab class="!bg-[#70DBDB]"
+                    aria-label="Example icon button with a filter icon">
+                    <mat-icon>filter_list</mat-icon>
+                </button>
+            </div>
+        </div>
     </div>
-    <div class="flex justify-center">
+    <div class="mr-5">
         <div class="grid grid-cols-3 mt-5 gap-5">
             @if (schedulings) {
             @for (scheduling of schedulings.data; track $index) {
-            <mat-card class="p-4 w-80 ">
+            <app-card [padding]="padding" [width]="width">
                 <div class="absolute right-0 top-0">
                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon>more_vert</mat-icon>
@@ -22,7 +30,7 @@
                             <span>Efetuar Pagamento</span>
                         </button>
 
-                        <button mat-menu-item (click)="openDialog(scheduling)">
+                        <button mat-menu-item (click)="openDialogDetails(scheduling)">
                             <mat-icon>details</mat-icon>
                             <span>Detalhes</span>
                         </button>
@@ -43,9 +51,13 @@
                             scheduling.payment_status | paymentStatusPipe }}</span>
                     </p>
                 </div>
-            </mat-card>
-            }
+            </app-card> }
             }
         </div>
+    </div>
+    <div class="flex justify-center absolute bottom-0">
+        <app-paginator [length]="totalSchedulings" [pageSize]="size"
+            (pageChange)="getSchedulings($event.pageIndex, $event.pageSize)">
+        </app-paginator>
     </div>
 </div>

@@ -1,9 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,10 +9,15 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { ButtonComponent } from '../../../../components/button/button.component';
 import { NgxMaskDirective } from 'ngx-mask';
 import { PatientService } from '../../../../services/patient.service';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { Patient } from '../../../../models/patient.model';
 import { catchError } from 'rxjs';
 import { SnackBarService } from '../../../../services/snack-bar.service';
+import { CardComponent } from "../../../../components/card/card.component";
 
 @Component({
   selector: 'app-edit-patient',
@@ -31,20 +32,23 @@ import { SnackBarService } from '../../../../services/snack-bar.service';
     MatStepperModule,
     NgxMaskDirective,
     ButtonComponent,
-    MatDialogModule
-  ],
+    MatDialogModule,
+    CardComponent
+],
   templateUrl: './edit-patient.component.html',
   styleUrl: './edit-patient.component.css',
 })
 export class EditPatientComponent implements OnInit {
   formPatient!: FormGroup;
+  width = "550px";
+  padding = "1.0rem";
 
   constructor(
     private patientService: PatientService,
     private snackBarService: SnackBarService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<EditPatientComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { patient: Patient },
+    @Inject(MAT_DIALOG_DATA) public data: { patient: Patient }
   ) {}
 
   ngOnInit(): void {
@@ -80,7 +84,7 @@ export class EditPatientComponent implements OnInit {
         )
         .subscribe(() => {
           this.snackBarService.open('Paciente atualizado com sucesso!');
-          window.location.reload();
+          this.patientService.updateSubjectPatient();
         });
     }
   }
