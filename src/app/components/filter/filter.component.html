@@ -1,0 +1,16 @@
+<div class="p-5">
+    <h2>Filtrar</h2>
+
+    <p class="mt-5">
+        {{ filterText }}
+    </p>
+
+    <ng-content></ng-content>
+
+    <div class="flex flex-row justify-between mt-5">
+        <button app-material-button   (click)="onClear()">Limpar</button>
+        <button app-material-button   (click)="onFilter()">
+            Filtrar
+        </button>
+    </div>
+</div>

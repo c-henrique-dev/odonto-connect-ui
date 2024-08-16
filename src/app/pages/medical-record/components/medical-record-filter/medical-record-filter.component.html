@@ -1,0 +1,18 @@
+<app-filter [filterText]="filterText" (filtrar)="filter()" (limpar)="filterClear()">
+    <div class="mt-5 flex gap-5">
+        <mat-form-field class="w-full">
+            <mat-label>Data Inicial</mat-label>
+            <input matInput [matDatepicker]="initialDatepicker" [(ngModel)]="startDate" placeholder="DD/MM/AAAA">
+            <mat-datepicker-toggle matSuffix [for]="initialDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #initialDatepicker startView="multi-year"
+                (closed)="initialDatepicker.close()"></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Data Final</mat-label>
+            <input matInput [matDatepicker]="finalDatepicker" [(ngModel)]="endDate" placeholder="DD/MM/AAAA">
+            <mat-datepicker-toggle matSuffix [for]="finalDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #finalDatepicker startView="multi-year" (closed)="finalDatepicker.close()"></mat-datepicker>
+        </mat-form-field>
+    </div>
+</app-filter>
