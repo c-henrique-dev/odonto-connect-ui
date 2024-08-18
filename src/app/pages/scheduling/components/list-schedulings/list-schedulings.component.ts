@@ -83,7 +83,7 @@ export class ListSchedulingsComponent implements AfterViewInit {
   }
 
   openDialogPayment(scheduling: Schedulings) {
-    this.dialogService.openDialog(CreatePaymentComponent, { scheduling });
+    this.dialogService.openDialog(CreatePaymentComponent, { scheduling }, "40%");
   }
 
   getSchedulings(size: number, page: number) {
