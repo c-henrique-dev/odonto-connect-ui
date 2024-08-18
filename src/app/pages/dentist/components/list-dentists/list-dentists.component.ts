@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Dentist } from '../../../../models/dentist.model';
 import { DentistService } from '../../../../services/dentist.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditDentistComponent } from '../edit-dentist/edit-dentist.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,6 +9,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TelephonePipe } from '../../../../../pipes/telephone.pipe';
+import { DialogService } from '../../../../services/dialog.service';
 
 @Component({
   selector: 'app-list-dentists',
@@ -21,7 +21,7 @@ import { TelephonePipe } from '../../../../../pipes/telephone.pipe';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    TelephonePipe
+    TelephonePipe,
   ],
   templateUrl: './list-dentists.component.html',
   styleUrl: './list-dentists.component.css',
@@ -37,15 +37,17 @@ export class ListDentistsComponent implements OnInit, AfterViewInit {
   ];
   dataSource = new MatTableDataSource<Dentist>();
   dentists: Dentist[] = [];
-  readonly dialog = inject(MatDialog);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private readonly dentistService: DentistService) {}
+  constructor(
+    private readonly dentistService: DentistService,
+    private readonly dialogService: DialogService
+  ) {}
 
   ngOnInit(): void {
     this.dentistService.updateSubjectDentist();
-    this.loadDentistTable();  
+    this.loadDentistTable();
   }
 
   ngAfterViewInit() {
@@ -53,10 +55,7 @@ export class ListDentistsComponent implements OnInit, AfterViewInit {
   }
 
   openDialog(dentist: Dentist) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { dentist };
-
-    this.dialog.open(EditDentistComponent, dialogConfig);
+    this.dialogService.openDialog(EditDentistComponent, { dentist });
   }
 
   applyFilter(event: Event) {

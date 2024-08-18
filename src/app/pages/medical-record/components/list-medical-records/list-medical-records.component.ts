@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { MedicalRecordService } from '../../../../services/medical-record.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -10,11 +10,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MedicalRecordFilterComponent } from '../medical-record-filter/medical-record-filter.component';
 import { CardComponent } from '../../../../components/card/card.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PaginatorComponent } from "../../../../components/paginator/paginator.component";
+import { DialogService } from '../../../../services/dialog.service';
 
 @Component({
   selector: 'app-list-medical-records',
@@ -30,8 +30,8 @@ import { PaginatorComponent } from "../../../../components/paginator/paginator.c
     MatButtonModule,
     CardComponent,
     MatPaginatorModule,
-    PaginatorComponent
-],
+    PaginatorComponent,
+  ],
   templateUrl: './list-medical-records.component.html',
   styleUrl: './list-medical-records.component.css',
 })
@@ -46,10 +46,10 @@ export class ListMedicalRecordsComponent implements AfterViewInit {
   size = 2;
   page = 0;
   totalMedicalRecords!: number;
-  readonly dialog = inject(MatDialog);
 
   constructor(
     private readonly medicalRecordService: MedicalRecordService,
+    private readonly dialogService: DialogService,
     private router: Router,
     private activatedRouter: ActivatedRoute
   ) {}
@@ -107,7 +107,6 @@ export class ListMedicalRecordsComponent implements AfterViewInit {
   }
 
   openDialogFilter() {
-    const dialogConfig = new MatDialogConfig();
-    this.dialog.open(MedicalRecordFilterComponent, dialogConfig);
+    this.dialogService.openDialog(MedicalRecordFilterComponent);
   }
 }

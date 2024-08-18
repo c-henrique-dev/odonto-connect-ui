@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { DetailsSchedulingComponent } from '../details-scheduling/details-scheduling.component';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Scheduling } from '../../../../models/scheduling.model';
 import { SnackBarService } from '../../../../services/snack-bar.service';
 import { CreatePaymentComponent } from '../../../payment/components/create-payment/create-payment.component';
@@ -20,6 +19,7 @@ import { FilterComponent } from '../../../../components/filter/filter.component'
 import { CardComponent } from '../../../../components/card/card.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PaginatorComponent } from "../../../../components/paginator/paginator.component";
+import { DialogService } from '../../../../services/dialog.service';
 
 @Component({
   selector: 'app-list-schedulings',
@@ -54,10 +54,10 @@ export class ListSchedulingsComponent implements AfterViewInit {
   totalSchedulings!: number;
   size = 2;
   page = 0;
-  readonly dialog = inject(MatDialog);
 
   constructor(
     private readonly schedulingService: SchedulingService,
+    private readonly dialogService: DialogService,
     private router: Router,
     private snackBarService: SnackBarService,
     private activatedRouter: ActivatedRoute
@@ -75,22 +75,15 @@ export class ListSchedulingsComponent implements AfterViewInit {
   }
   
   openDialogDetails(scheduling: Scheduling) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { scheduling };
-
-    this.dialog.open(DetailsSchedulingComponent, dialogConfig);
+    this.dialogService.openDialog(DetailsSchedulingComponent, { scheduling} );
   }
 
   openDialogFilter() {
-    const dialogConfig = new MatDialogConfig();
-    this.dialog.open(SchedulingFilterComponent, dialogConfig);
+    this.dialogService.openDialog(SchedulingFilterComponent);
   }
 
   openDialogPayment(scheduling: Schedulings) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { scheduling };
-
-    this.dialog.open(CreatePaymentComponent, dialogConfig);
+    this.dialogService.openDialog(CreatePaymentComponent, { scheduling });
   }
 
   getSchedulings(size: number, page: number) {

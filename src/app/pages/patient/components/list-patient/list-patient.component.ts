@@ -3,14 +3,12 @@ import {
   Component,
   OnInit,
   ViewChild,
-  inject,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { PatientService } from '../../../../services/patient.service';
 import { Patient } from '../../../../models/patient.model';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditPatientComponent } from '../edit-patient/edit-patient.component';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TelephonePipe } from '../../../../../pipes/telephone.pipe';
 import { CpfPipe } from '../../../../../pipes/cpf.pipe';
+import { DialogService } from '../../../../services/dialog.service';
 
 @Component({
   selector: 'app-list-patient',
@@ -46,10 +45,12 @@ export class ListPatientComponent implements OnInit, AfterViewInit {
     'excluir',
   ];
   dataSource = new MatTableDataSource<Patient>();
-  readonly dialog = inject(MatDialog);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private readonly patientService: PatientService) {}
+  constructor(
+    private readonly patientService: PatientService,
+    private readonly dialogService: DialogService
+  ) {}
 
   ngOnInit(): void {
     this.patientService.updateSubjectPatient();
@@ -61,10 +62,7 @@ export class ListPatientComponent implements OnInit, AfterViewInit {
   }
 
   openDialog(patient: Patient) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { patient };
-
-    this.dialog.open(EditPatientComponent, dialogConfig);
+    this.dialogService.openDialog(EditPatientComponent, { patient });
   }
 
   applyFilter(event: Event) {
